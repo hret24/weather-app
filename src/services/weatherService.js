@@ -14,7 +14,6 @@ export const getWeatherData = async (lat, lon) => {
                 password: PASSWORD
             }
         });
-        console.log("Weather Data Response: ", response)
         return response.data;
     } catch(error) {
         console.error('Error fetching weather data:', error);
@@ -33,7 +32,6 @@ export const getForecastData = async (lat, lon) => {
                 password: PASSWORD
             }
         });
-        console.log("Forecast Data Response: ", response)
 
         const x = response.data.data[0].coordinates[0].dates
         x.shift(); //removes first date

@@ -24,7 +24,7 @@ button {
   }
 
   input, button {
-    width: 100%;
+    width: 50%;
     margin: 5px 0;
   }
 }
@@ -32,3 +32,21 @@ button {
 label {
   display: none;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 1200px;
+}
+
+@media only screen and (min-width: 600px) {
+  .container{
+    flex-direction: row;
+  }}
+
+  .weather-icon {
+    width: 50px;
+    height: auto;
+  }
