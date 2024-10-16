@@ -14,17 +14,17 @@ function App() {
   };
 
   const searchWeather = async () => {
-    // console.log("searchWeather function triggered.")
-    // if (!cityCoords) {
-    //   setError("Please enter coordinates");
-    //   return;
-    // }
-    // setError("");
+    console.log("searchWeather function triggered.")
+    if (!cityCoords) {
+      setError("Please enter coordinates");
+      return;
+    }
+    setError("");
 
-    // const [lat, lon] = cityCoords.split(",");
-    // console.log("City coordinates:", cityCoords)
-    // console.log("Lat:", lat)
-    // console.log("Lon:", lon)
+    const [lat, lon] = cityCoords.split(",");
+    console.log("City coordinates:", cityCoords)
+    console.log("Lat:", lat)
+    console.log("Lon:", lon)
 
     try {
       console.log("City coordinates:", cityCoords)
@@ -41,11 +41,15 @@ function App() {
       setError("Unable to fetch data. Check the coordinates are correct.");
     }
   };
+  console.log(forecast)
 
   return (
     <div className="app-container">
       <h1>Weather App</h1>
+      <label htmlFor="coords">Coordinates</label>
       <input
+        name="coords"
+        id="coords"
         type="text"
         placeholder="Enter city coordinates (lat,lon)"
         value={cityCoords}
@@ -59,16 +63,18 @@ function App() {
       (
         <div className='"weather-info'>
           <h2>Current Weather</h2>
+          <p>{new Date().toLocaleDateString()}</p>
           <p>Temperature: {weather.data[0].coordinates[0].dates[0].value}°C</p>
         </div>
       )}
 
-      {forecast && (
+      {forecast && 
+      (
         <div className="forecast-info">
           <h3>5-Day Forecast</h3>
           <div className="forecast">
-            {forecast.data[0].coordinates[0].dates.map((date, index) => (
-              <div key={index} classNAme="forecase-day">
+            {forecast.map((date, index) => (
+              <div key={index} className="forecast-day">
                 <p>{new Date(date.date).toLocaleDateString()}</p>
                 <p>Temperature: {date.value}°C</p>
               </div>

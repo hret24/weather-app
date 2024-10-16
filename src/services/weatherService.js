@@ -27,7 +27,7 @@ export const getForecastData = async (lat, lon) => {
     const endDate = new Date(Date.now() + 5 * 24 * 60 * 60 *1000).toISOString(); //5 days from today
 
     try {
-        const response = await axios.get(`${BASE_URL}/${now}--${endDate}:PT12H/t_2m:C/${lat},${lon}/json`, {
+        const response = await axios.get(`${BASE_URL}/${now}--${endDate}:PT24H/t_2m:C/${lat},${lon}/json`, {
             auth: {
                 username: USERNAME,
                 password: PASSWORD
@@ -35,7 +35,10 @@ export const getForecastData = async (lat, lon) => {
         });
         console.log("Forecast Data Response: ", response)
 
-        return response.data;
+        const x = response.data.data[0].coordinates[0].dates
+        x.shift(); //removes first date
+        return x;
+
 
     } catch (error) {
         console.error('Error fetching forecast data:', error);
