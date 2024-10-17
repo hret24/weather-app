@@ -18,7 +18,10 @@ function App() {
     if (city) {
       const { lat, lon } = city;
       fetchWeatherData(lat, lon); // Call API with coordinates
+      setError("");
     } else {
+      setWeather(null);
+      setForecast(null);
       setError("City not found.");
     }
   };
