@@ -37,29 +37,6 @@ function App() {
     }
   };
 
-  const searchWeather = async () => {
-    console.log("searchWeather function triggered.");
-    if (!cityName) {
-      setError("Please enter a valid city name.");
-      return;
-    }
-    setError("");
-
-    const [lat, lon] = cityName.split(",");
-
-
-    try {
-      const [lat, lon] = cityName.split(",");
-      const weatherData = await getWeatherData(lat, lon);
-      const forecastData = await getForecastData(lat, lon);
-      setWeather(weatherData);
-      setForecast(forecastData);
-    } catch (err) {
-      setError("Unable to fetch data. Check the city name is correct.");
-    }
-  };
-  console.log(forecast);
-
   return (
     <div className="app-container">
       <h1>Weather App</h1>
@@ -68,7 +45,7 @@ function App() {
         name="cityName"
         id="cityName"
         type="text"
-        placeholder="Enter a city."
+        placeholder="Enter a city"
         value={cityName}
         onChange={handleInputChange}
       />

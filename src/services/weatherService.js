@@ -33,9 +33,9 @@ export const getForecastData = async (lat, lon) => {
             }
         });
 
-        const x = response.data.data[0].coordinates[0].dates
-        x.shift(); //removes first date
-        return x;
+        const forecastDates = response.data.data[0].coordinates[0].dates
+        forecastDates.shift(); //removes first date
+        return forecastDates;
 
 
     } catch (error) {
