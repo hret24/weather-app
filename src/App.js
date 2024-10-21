@@ -32,6 +32,8 @@ function App() {
       const forecastData = await getForecastData(lat, lon);
       setWeather(weatherData);
       setForecast(forecastData);
+      console.log("weatherData: ", weatherData);
+      console.log("forecastData: ", forecastData);
     } catch (err) {
       setError("Unable to fetch weather data.");
     }
